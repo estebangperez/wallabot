@@ -1,11 +1,29 @@
 package bot.config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Config {
 
     private Auth auth;
     private List<Search> searches;
+
+    public Config() {
+        this.auth = new Auth();
+        this.auth.setVintedBearerToken("example_vinted_bearer_token");
+        this.auth.setVintedRefreshToken("example_vinted_refresh_token");
+        this.auth.setWallapopBearerToken("example_wallapop_bearer_token");
+        this.searches = new ArrayList<>();
+        Search exampleSearch = new Search();
+        exampleSearch.webhook_url = "http://example.com/webhook";
+        exampleSearch.keywords = "example keywords";
+        exampleSearch.latitude = 40.7128;
+        exampleSearch.longitude = -74.0060;
+        exampleSearch.min_price = 10;
+        exampleSearch.max_price = 100;
+        exampleSearch.delay = 5000;
+        this.searches.add(exampleSearch);
+    }
 
     public Auth getAuth() {
         return auth;
@@ -26,6 +44,10 @@ public class Config {
 
         public String getVintedRefreshToken() {
             return vinted_refresh_token;
+        }
+
+        public void setWallapopBearerToken(String wallapop_bearer_token) {
+            this.wallapop_bearer_token = wallapop_bearer_token;
         }
 
         public void setVintedRefreshToken(String vinted_refresh_token) {

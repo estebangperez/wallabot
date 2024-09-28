@@ -10,11 +10,15 @@ import bot.task.MonitorTask;
 import okhttp3.OkHttpClient;
 
 public class App {
-    public static final Gson GSON = new Gson();
+    public static final Gson GSON = new Gson().newBuilder().setPrettyPrinting().create();
     public static final OkHttpClient OKHTTP_CLIENT = new OkHttpClient();
 
     public static void main(String[] args) {
         Config config = ConfigLoader.loadConfig();
+        if (config == null) {
+            System.out.println("Created new config file, please fill it out.");
+            return;
+        }
         System.out.println("Loaded config: " + config.getSearches().size() + " searches.");
         for (Config.Search search : config.getSearches()) {
             Timer timer = new Timer();

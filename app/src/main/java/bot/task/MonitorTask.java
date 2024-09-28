@@ -5,6 +5,7 @@ import java.util.*;
 import bot.config.Config;
 import bot.fetcher.ItemFetcher;
 import bot.fetcher.impl.VintedFetcher;
+import bot.fetcher.impl.WallapopFetcher;
 import bot.item.Item;
 import bot.utils.DiscordEmbedUtil;
 
@@ -18,8 +19,7 @@ public class MonitorTask extends TimerTask {
     public MonitorTask(Config.Search search, Config.Auth auth) {
         this.search = search;
         this.auth = auth;
-       // this.fetchers = List.of(new WallapopFetcher(), new VintedFetcher());
-       this.fetchers = List.of(new VintedFetcher());
+        this.fetchers = List.of(new WallapopFetcher(), new VintedFetcher());
     }
 
     @Override
